@@ -1,9 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
-const Home =()=>(
+
+const LoginPage = ()=>(
     <View>
-        <Text>Home</Text>
+        <Text>LoginPage</Text>
     </View>
 )
 
-export default Home;
+export default LoginPage;
