@@ -50,12 +50,17 @@ const PopularBoard = ({navigation:{navigate}})=>{
         //await data 새로고침
         setRefreshing(false);
     }
-
+    //flatlist
+    //scrollView : 화면에 안보이는것까지 로딩 후 화면출력(속도느림) 데이터갯수 모름,데이터적을 때 사용
+    //flatList : 화면에 보이는 부분만 로딩후 출력, 데이터 갯수를 모를때 많을떄 사용
+    //ListHeaderComponent : flatList는 배열의 값을 반복문으로 하나하나 출력. 배열이외의 요소를 넣고싶을 떄는ListHeaderComponent에 작성
     return(
         <FlatScroll
             data={screenNumber==1 ? trending : screenNumber==2 ? trending2 :trending3}
+
             onRefresh={onfresh}
             refreshing={refreshing}
+            
             ListHeaderComponent={
                 <TouchCategoryView>
                     <TouchCategory onPress={()=>setScreenNumber(1)}>
