@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View,Modal } from "react-native";
 import { NavigationHelpersContext } from "@react-navigation/native";
 import styled from "styled-components/native";
 
@@ -153,6 +153,44 @@ const PopularBoardBox = styled.View`
         height:20px;
     `;
 
+const ModalBackView=styled.View`
+    position:absolute;
+    background-color: black;
+    opacity: 0.5;
+    width:100%;
+    height:100%;
+`;
+const ModalView = styled.View`
+    background-color: white;
+    width:60%;
+    height:120px;
+    border-radius: 20px;
+    opacity: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding:10px;
+    left:12%;
+    top:50%;
+`;
+    const ModalYesPressable = styled.Pressable`
+        border:1px;
+        border-radius: 10px;
+        background-color: aqua;
+        width:40%;
+        height:30px;
+        justify-content: center;
+        align-items: center;
+    `;
+    const ModalNoPressable = styled.Pressable`
+       border:1px;
+        border-radius: 10px;
+        background-color: aqua;
+        width:40%;
+        height:30px;
+        justify-content: center;
+        align-items: center;
+    `;
 
 //pressable
 //---------
@@ -164,9 +202,30 @@ const PopularBoardBox = styled.View`
 
 const Home =({navigation:{navigate}})=>{
     const [click,setClick] = useState(false);
+    const [modalVisible,setModalVisible] = useState(false)
 
     return(
         <Container>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+            >
+                <ModalBackView>
+                </ModalBackView>
+                <ModalView>
+                    <ModalYesPressable>
+                        <Text>
+                            Yes
+                        </Text>
+                    </ModalYesPressable>
+                    <ModalNoPressable onPress={()=>setModalVisible(false)}>
+                        <Text>
+                            No
+                        </Text>
+                    </ModalNoPressable>
+                </ModalView>
+            </Modal>
             <HeaderBox>
                 <LoginBtn 
                     onPress={()=>navigate("Stack",{screen:"LoginPage"})}
@@ -180,7 +239,7 @@ const Home =({navigation:{navigate}})=>{
                         Login
                     </LoginText>
                 </LoginBtn>
-                <ConfigureBtn>
+                <ConfigureBtn onPress={()=>setModalVisible(true)}>
                     <ConfigureText>
                         Configure
                     </ConfigureText>

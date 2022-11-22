@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import { FlatList, Text, View } from "react-native"
 import styled from "styled-components";
 
 // javascript->react
 // useState,useEffect
 // useState -> 바뀐 변수 값 화면에 바로 새로고침
+// useEffect => component가 바뀌면 해당 함수 실행
 
 const FlatScroll = styled.FlatList`
     padding-top: 30px;
@@ -43,6 +44,7 @@ const PopularBoard = ({navigation:{navigate}})=>{
     //setRefreshing() 함수를 통해 refreshing 변수 값 변경 , false는 초기 값
     const [refreshing,setRefreshing] = useState(false);
     const [screenNumber,setScreenNumber] = useState(1);
+    const [effectTest,setEffectText] = useState(false);
 
     //async,await : await 가끝날때까지 모두대기
     const onfresh= async ()=>{
@@ -50,10 +52,12 @@ const PopularBoard = ({navigation:{navigate}})=>{
         //await data 새로고침
         setRefreshing(false);
     }
-    //flatlist
-    //scrollView : 화면에 안보이는것까지 로딩 후 화면출력(속도느림) 데이터갯수 모름,데이터적을 때 사용
-    //flatList : 화면에 보이는 부분만 로딩후 출력, 데이터 갯수를 모를때 많을떄 사용
-    //ListHeaderComponent : flatList는 배열의 값을 반복문으로 하나하나 출력. 배열이외의 요소를 넣고싶을 떄는ListHeaderComponent에 작성
+
+    //상위 함수에서 실행
+    useEffect(()=>{
+        console.log("useEffect실행");
+    },[effectTest]);
+
     return(
         <FlatScroll
             data={screenNumber==1 ? trending : screenNumber==2 ? trending2 :trending3}
@@ -63,7 +67,7 @@ const PopularBoard = ({navigation:{navigate}})=>{
             
             ListHeaderComponent={
                 <TouchCategoryView>
-                    <TouchCategory onPress={()=>setScreenNumber(1)}>
+                    <TouchCategory onPress={()=>setEffectText(!effectTest)}>
                         <Text>1</Text>
                     </TouchCategory>
                     <TouchCategory onPress={()=>setScreenNumber(2)}>

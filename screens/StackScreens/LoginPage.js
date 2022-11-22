@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { Text,ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.View`
@@ -79,9 +79,13 @@ const HelpView = styled.View`
     height:100px;
     width:350px;
 `;
-    const HelpTextPressable = styled.Pressable``;
-    const PolicyTextPressable = styled.Pressable``;
-    const ClauseTextPressable = styled.Pressable``;
+    const HelpTextPressable = styled.Pressable`
+    `;
+    const PolicyTextPressable = styled.Pressable`
+    `;
+    const ClauseTextPressable = styled.Pressable`
+    `;
+
 
 //const LoginPage=()=>()
 //const LoginPage=()=>{return()}
@@ -101,66 +105,77 @@ const LoginPage =()=>{
     const [checkIdBlank,setCheckIdBlank] = useState(true);
     const [checkPwBlank,setCheckPwBlank] = useState(true);
 
+    const [loadingCheck,setLoadingCheck] = useState(false);
+
     const checkEmpty=()=>{
-        //textInput 비어있는지 확인
-        if(idChange==""){
-            setCheckIdBlank(false);
-        }
-        else{
-            setCheckIdBlank(true);
-        }
-        if(checkPwBlank==""){
-            setCheckPwBlank(false);
-        }
-        else{
-            setCheckPwBlank(true);
-        }
+        setLoadingCheck(true);
+        setTimeout(()=>{
+            //textInput 비어있는지 확인
+            if(idChange==""){
+                setCheckIdBlank(false);
+            }
+            else{
+                setCheckIdBlank(true);
+            }
+
+            if(pwChange==""){
+                setCheckPwBlank(false);
+            }
+            else{
+                setCheckPwBlank(true);
+            }
+            setLoadingCheck(false);
+            
+        },3000); //3초후에 안에 실행
     }
 
-    return(
-    <Container>
-        <LogoImage
-            source={require('../../images/투투로고.png')}
-        />
-        <LoginBox>
-            <IDBox>
-                <IDText></IDText>
-                <IDTextInput
-                    onChangeText={(text)=>setIdChange(text)}
-                    placeholder="id 입력"
-                />
-                {checkIdBlank?null:<Text style={{color:"red"}}>id 비어있음</Text>}
-            </IDBox>
-            <PWBox>
-                <PWText></PWText>
-                <PWTextInput
-                    onChangeText={(text)=>setPwChange(text)}
-                    placeholder="pw 입력"
-                />
-                {checkPwBlank?null:<Text style={{color:"red"}}>pw 비어있음</Text>}
-            </PWBox>
-            <LoginBtn
-                onPress={()=>checkEmpty()}
-            ></LoginBtn>
-        </LoginBox>
-        <JoinSearchView>
-            <JoinPressable>
-                <JoinText></JoinText>
-            </JoinPressable>
-            <IDSearchPressable>
-                <IDSearchText></IDSearchText>
-            </IDSearchPressable>
-            <PWSearchPressable>
-                <PWSearchText></PWSearchText>
-            </PWSearchPressable>
-        </JoinSearchView>
-        <HelpView>
-            <HelpTextPressable></HelpTextPressable>
-            <PolicyTextPressable></PolicyTextPressable>
-            <ClauseTextPressable></ClauseTextPressable>
-        </HelpView>
-    </Container>
-)
-    }
+    return (
+        <Container>
+            {loadingCheck ?<ActivityIndicator style={{position:"absolute"}} size="large"/> :null}
+            <LogoImage
+                source={require('../../images/투투로고.png')}
+            />
+            <LoginBox>
+                <IDBox>
+                    <IDText></IDText>
+                    <IDTextInput
+                        onChangeText={(text)=>setIdChange(text)}
+                        placeholder="id 입력"
+                    />
+                    {checkIdBlank?null:<Text style={{color:"red"}}>id 비어있음</Text>}
+                </IDBox>
+                <PWBox>
+                    <PWText></PWText>
+                    <PWTextInput
+                        onChangeText={(text)=>setPwChange(text)}
+                        placeholder="pw 입력"
+                    />
+                    {checkPwBlank?null:<Text style={{color:"red"}}>pw 비어있음</Text>}
+                </PWBox>
+                <LoginBtn
+                    onPress={()=>checkEmpty()}
+                >
+                    <LoginText>로그인</LoginText>
+                </LoginBtn>
+            </LoginBox>
+            <JoinSearchView>
+                <JoinPressable>
+                    <JoinText></JoinText>
+                </JoinPressable>
+                <IDSearchPressable>
+                    <IDSearchText></IDSearchText>
+                </IDSearchPressable>
+                <PWSearchPressable>
+                    <PWSearchText></PWSearchText>
+                </PWSearchPressable>
+            </JoinSearchView>
+            <HelpView>
+                <HelpTextPressable></HelpTextPressable>
+                <PolicyTextPressable></PolicyTextPressable>
+                <ClauseTextPressable></ClauseTextPressable>
+            </HelpView>
+        </Container>
+    )
+}
 
 export default LoginPage;
