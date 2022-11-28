@@ -113,6 +113,25 @@ const PopualrBox = styled.View`
         margin-top: 6px;
     `;
 
+const NotionBtn = styled.TouchableOpacity`
+border:1px;
+width:30px;
+height:30px;
+`;
+const NotionText = styled.Text`
+color:black;
+font-size:10px;
+`;
+
+const ServiceBtn = styled.TouchableOpacity`
+        border:1px;
+        width:30px;
+        height:30px;
+    `;
+const ServiceText = styled.Text`
+        color:black;
+        font-size:10px;
+    `;
 
 const My = () => (
     <Container>
@@ -155,8 +174,10 @@ const My = () => (
             <PopularText>앱설정</PopularText>
             <PopualrBox></PopualrBox>
             <PopualrBox></PopualrBox>
-            <PopualrBox></PopualrBox>
-            <PopualrBox></PopualrBox>
+            <PopualrBox>서비스 이용약관<NotionBtn onPress={()=>navigate("Stack",{screen:"ServicePage"})}>
+                <NotionText>▶</NotionText></NotionBtn></PopualrBox>
+            <PopualrBox>공지사항<NotionBtn onPress={()=>navigate("Stack",{screen:"NotionPage"})}>
+                <NotionText>▶</NotionText></NotionBtn></PopualrBox>
             <PopualrBox></PopualrBox>
         </PopularBoardBox>
         <PopularBoardBox>
