@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 
 import LoginPage from "../screens/StackScreens/LoginPage";
 import PopularBoard from "../screens/StackScreens/PopularBoard";
+import ProfilePage from "../screens/StackScreens/My/ProfilePage";
 
 const NativeStack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const Stack =()=>(
     }}>
         <NativeStack.Screen name="LoginPage" component={LoginPage}/>
         <NativeStack.Screen name="PopularBoard" component={PopularBoard}/>
+        <NativeStack.Screen name="ProfilePage" component={ProfilePage}/>
     </NativeStack.Navigator>
 )
 
