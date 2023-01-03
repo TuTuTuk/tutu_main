@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import styled from "styled-components/native";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Container = styled.ScrollView.attrs(()=>({
     contentContainerStyle:{
@@ -8,16 +9,17 @@ const Container = styled.ScrollView.attrs(()=>({
     }
 }))`
     flex:1;
-    border:1px;
+    margin:10px;
 `;
 //----------------------------------------------------------------------------
 //----------------------------------검색box------------------------------------
 //----------------------------------------------------------------------------
 const HeaderBox = styled.View`
+    //border: 1px;
     flex:1;
     margin:10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 
     flex-direction:row;
     justify-content: space-between;
@@ -29,117 +31,102 @@ const HeaderBox = styled.View`
         height:40px;
     `;
         const BackBtn = styled.TouchableOpacity`
-            border : 1px;
+            //border : 1px;
             width  : 100%;
             height : 40px;
+            justify-content: center;
         `;
-            const BackText = styled.Text`
-                color : black;
-                font-size: 20px;
-            `;
     const BoardTextBox = styled.View`
         border-color: black;
         border-radius: 7px;
         background-color: lightgray;
-        width : 80%;
+        width : 300px;
         height: 40px;
         flex-direction: row;
         justify-content:space-between;
     `;
         const BoardText = styled.Text`
-            margin-top: 5px;
-            margin-left: 10px;
-            font-size: 20px;
+            margin-top: 10px;
+            margin-left: 15px;
+            font-size: 15px;
             color : black;
+            font-weight: 600;
         `;
         const SearchBtn = styled.TouchableOpacity`
-            border:1px;
-            border-color:black;
+            //border : 1px;
             width:30px;
             height:30px;
-            margin :4px;
             margin-right: 10px;
+            margin-top: 5px;
         `;
-            const SearchText = styled.Text`
-                margin-top: 3px;
-                color : black;
-                font-size: 15px;
-            `;
-    const PlusView = styled.View`
+    const PlusBtn = styled.TouchableOpacity`
         border-color: orange;
-        width:15px;
+        width:25px;
         height:40px;
+        justify-content: center;
     `;
-        const PlusBtn = styled.TouchableOpacity`
-            border : 1px;
-            width  : 100%;
-            height : 100%;
-        `;
-            const PlusText = styled.Text`
-                color : black;
-                font-size: 10px;
-            `;
 
 //-----------------------------------------------------------------------------
 //-----------------------------SearchFilter------------------------------------
 //-----------------------------------------------------------------------------
  const SearchFilterBox = styled.View`
-    margin:10px;
     margin-left: 20px;
     margin-right: 20px;
     height : 40px;
     flex-direction:row;
  `;   
     const FilterBox = styled.View`
-        height : 40px;
+        height : 20px;
         flex-direction:row;
         width: 70%;
+        margin-top: 10px;
     `;
         const Filter1 = styled.View`
             border: 1px;
             border-color: blue;
-            border-radius: 3px;
-            margin: 6px;
-            margin-left : 0px;
+            border-radius: 5px;
             flex-direction: row;
+            justify-content: center;
+            padding-right: 3px;
+            padding-left: 3px;
+            margin-right: 5px;
         `;
             const Filter1Text = styled.Text`
-                margin: 3px;
                 font-size: 13px;
                 color: blue;
             `;
             const TextX1 = styled.Text`
-                margin: 3px;
                 font-size: 13px;
-                margin-right: 3px;
+                font-weight: 600;
             `;
         const Filter2 = styled.View`
             border: 1px;
             border-color: orange;
-            border-radius: 3px;
-            margin: 6px;
+            border-radius: 5px;
             flex-direction: row;
+            justify-content: center;
+            padding-left : 3px;
+            padding-right: 3px;
         `;
             const Filter2Text = styled.Text`
-                margin: 3px;
                 font-size: 13px;
                 color: orange;
             `;
             const TextX2 = styled.Text`
                 color : orange;
-                margin: 3px;
                 font-size: 13px;
                 margin-right: 3px;
+                font-weight: 600;
             `;
     const SearchFilterBtn = styled.View`
         background-color : #1655E9;
         border-radius: 8px;
         width: 30%;
         align-items: center;
+        justify-content: center;
     `;
         const SearchFilterText = styled.Text`
-            margin: 9px;
-            font-size: 15px;
+            font-size: 18px;
             color: white;
         `;
 //--------------------------------------------------------------------------
@@ -147,8 +134,8 @@ const HeaderBox = styled.View`
 //--------------------------------------------------------------------------
 const BoardsBox = styled.View`
     margin-top :20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
  `;   
     const BoardBox1 = styled.View`
         border-radius: 15px;
@@ -159,35 +146,38 @@ const BoardsBox = styled.View`
         margin-bottom: 5px;
     `;
         const BoardContentBox1 = styled.View`
-            width:65%;
+            width:70%;
             font-size: 10px;
-            margin: 10px;
-            border: 1px;
+            margin: 15px;
+            margin-right: 0px;
+            //border: 1px;
         `;
             const TitleBox = styled.View`
-                margin-bottom: 0px;
                 height : 25px;
+                //border: 1px;
             `;
                 const TitleText = styled.Text`
-                    margin-left: 5px;
                     font-size: 15px;
+                    font-weight: 600;
                 `;
             const ContentBox= styled.View`
-                height : 50px;
+                height : 45px;
+                //border: 1px;
             `;
                 const ContentText = styled.Text`
-                    margin-left: 5px;
+                    //border: 1px;
                 `;
             const KeywordBox1 = styled.View`
                 margin-top: 5px;
-                margin-bottom: 0px;
                 height: 20px;
                 flex-direction: row;
+                //border: 1px;
             `;
                 const KeywordBox1Text = styled.View`
                     background-color: blue;
                     border-radius: 5px;
-                    margin-left: 5px;
+                    padding-left: 3px;
+                    padding-right: 3px;
                 `;
                     const KeywordText1 = styled.Text`
                         color : white;
@@ -196,45 +186,64 @@ const BoardsBox = styled.View`
                     `;
         const BoardImageBox1 = styled.View`
             border-color:black;
-            width:25%;
+            width:70px;
             align-items: center;
-            margin: 10px;
-            margin-left: 0px;
-            border: 1px;
+            margin: 15px;
+            margin-left: 5px;
+            //border: 1px;
         `;
             const ContentImage = styled.Image`
                 border-radius: 10px;
-                margin-top: 10px;
                 background-color: grey;
                 width : 70px;
                 height : 70px;
+                margin-bottom : 15px;
             `;
-            const ContentImageText = styled.Text`
-                margin-top: 10px;
-                color: black;
-                font-size: 15px;
+            const ReactionBox = styled.View`
+                //border : 1px;
+                width: 60px;
+                height: 15px;
+                flex-direction: row;
+                align-self : center;
+        `;
+            const CommentIcon = styled.View`
+                width: 25%;
+                height: 100%;
+                //border: 1px;
+            `;
+            const CommentText = styled.Text`
+                font-size: 10px;
+            `;
+            const GoodIcon = styled.View`
+                margin-left: 5px;
+                width: 25%;
+                height: 100%;
+                //border: 1px;
+                justify-content: center;
+            `;
+            const GoodText = styled.Text`
+                font-size: 10px;
             `;   
 
-const Designboard = ({navigation:{navigate}})=>(
+const Designboard_min = ({navigation:{navigate}})=>(
     <Container>
         <HeaderBox>
             <BackView>
-                <BackBtn
-                    onPress={()=>navigate("Stack",{screen:"Board"})}>
-                    <BackText>{' <'}</BackText>
+                <BackBtn 
+                    onPress={()=>navigate("Tabs",{screen:"Board_min"})}>
+                    <Icon name="chevron-back-outline" size = {25} />
                 </BackBtn>
             </BackView>
             <BoardTextBox>
-                <BoardText>디자인공학부</BoardText>   
-                <SearchBtn>
-                    <SearchText>검색</SearchText>
+                <BoardText>게시판 이름/및 검색키워드</BoardText>   
+                <SearchBtn
+                    onPress={()=>navigate("Stack",{screen:"Board_research_min"})}>
+                    <Icon name="search-outline" size = {25}/>
                 </SearchBtn>
             </BoardTextBox>
-            <PlusView>
-                <PlusBtn> 
-                    <PlusText>{' :'}</PlusText>
-                </PlusBtn>
-            </PlusView>
+            <PlusBtn> 
+                <Icon name="ellipsis-vertical-outline" size = {25}/>
+            </PlusBtn>
         </HeaderBox>
         <SearchFilterBox>
             <FilterBox>
@@ -255,7 +264,7 @@ const Designboard = ({navigation:{navigate}})=>(
             <BoardBox1>
                 <BoardContentBox1>
                     <TitleBox>
-                        <TitleText>제목</TitleText>
+                        <TitleText>제목을 입력하세요</TitleText>
                     </TitleBox>
                     <ContentBox>
                         <ContentText>내용 입력</ContentText>
@@ -268,7 +277,16 @@ const Designboard = ({navigation:{navigate}})=>(
                 </BoardContentBox1>
                 <BoardImageBox1>
                     <ContentImage></ContentImage>
-                    <ContentImageText>인기도</ContentImageText>
+                    <ReactionBox>
+                        <CommentIcon>
+                            <Icon name="chatbox-ellipses" size = {12} color = "#1655E9"/>
+                        </CommentIcon>
+                        <CommentText>18</CommentText>
+                        <GoodIcon>
+                            <Icon name="thumbs-up" size = {12} color = "#FF0000"/>
+                        </GoodIcon>
+                        <GoodText>18</GoodText>
+                    </ReactionBox>
                 </BoardImageBox1>
             </BoardBox1>
             <BoardBox1>
@@ -304,4 +322,4 @@ const Designboard = ({navigation:{navigate}})=>(
     
 )
 
-export default Designboard;
+export default Designboard_min;

@@ -1,6 +1,9 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import styled from "styled-components/native";
+import Icon from 'react-native-vector-icons/Ionicons';
+import OptionsMenu from "react-native-option-menu";
+import { Menu, MeneProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu"
 
 const Container = styled.ScrollView.attrs(()=>({
     contentContainerStyle:{
@@ -8,14 +11,17 @@ const Container = styled.ScrollView.attrs(()=>({
     }
 }))`
     flex:1;
-    margin:10px;
 `;
 
 const HeaderBox = styled.View`
+    //border: 1px;
     flex:1;
-    margin:10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    width: 89.7%;
+    height: 5.4%;
+    align-self: center;
+    margin-bottom: 20px;
+    margin-left: 7px;
+    margin-right: 7px;
 
     flex-direction:row;
     justify-content: space-between;
@@ -23,274 +29,324 @@ const HeaderBox = styled.View`
 `;
     const BackView = styled.View`
         border-color: orange;
-        width:25px;
-        height:40px;
+        width:10%;
     `;
         const BackBtn = styled.TouchableOpacity`
-            border : 1px;
+            //border : 1px;
             width  : 100%;
             height : 40px;
+            justify-content: center;
         `;
-            const BackText = styled.Text`
-                color : black;
-                font-size: 20px;
-            `;
     const BoardTextBox = styled.View`
         border-color: black;
-        border-radius: 7px;
+        border-radius: 3px;
         background-color: lightgray;
-        width : 80%;
-        height: 40px;
+        width : 76%;
+        height: 100%;
         flex-direction: row;
         justify-content:space-between;
     `;
         const BoardText = styled.Text`
-            margin-top: 5px;
-            margin-left: 10px;
-            font-size: 20px;
+            margin-top: 10px;
+            margin-left: 15px;
+            font-size: 16px;
             color : black;
+            font-weight: 600;
         `;
         const SearchBtn = styled.TouchableOpacity`
-            border:1px;
-            border-color:black;
+            //border : 1px;
             width:30px;
             height:30px;
-            margin :4px;
             margin-right: 10px;
+            margin-top: 5px;
         `;
-            const SearchText = styled.Text`
-                margin-top: 3px;
-                color : black;
-                font-size: 15px;
-            `;
-    const PlusView = styled.View`
+    const PlusBtn = styled.TouchableOpacity`
         border-color: orange;
-        width:15px;
-        height:40px;
+        width:5%;
+        height: 100%;
+        justify-content: center;
     `;
-        const PlusBtn = styled.TouchableOpacity`
-            border : 1px;
-            width  : 100%;
-            height : 100%;
-        `;
-            const PlusText = styled.Text`
-                color : black;
-                font-size: 10px;
-            `;
 //------------------------------------------------------------------------------
 //-------------------------------핫 게시판---------------------------------------
 //------------------------------------------------------------------------------
 const HotBoardBox = styled.View`
-    flex : 2;
-    background-color: #E0E0E0;
+    //border: 1px;
     border-radius: 15px;
-    height:150px; 
-    margin:10px;
+    height:140px; 
+    width: 86%;
+    align-self: center;
 `;
     const HotTextBox = styled.View`
         height:40px;
         flex-direction: row;
-        padding-left: 15px
+        padding-left: 5px;
     `;
         const HotIconBox = styled.View`
-            height:24px;
-            width:24px;
-            background-color: #606060;
-            margin-left: 20px;
+            height: 30px;
+            width: 30px;
             margin: 5px;
-            margin-top: 10px;
         `;   
         const HotText = styled.Text`
-            padding-top:10px;
             color : black;
-            font-size: 17px;
+            font-size: 15px;
+            padding-top: 10px;
+            font-weight: 500;
         `;
-    const HotArticle = styled.View`
+    const HotArticle = styled.TouchableOpacity`
+        //border: 1px;
         border-radius: 15px;
         background-color: #C4BFBF;
-        height: 110px;
+        height: 100px;
         flex-direction: row;
+        justify-content: space-between;
+        padding: 15px;
     `;
         const AricleText = styled.View`
-            border:1px;
-            border-radius: 15px;
+            //border:1px;
             width: 75%;
         `;
+            const ArticleTitle = styled.Text`
+                font-size: 15px;
+                font-weight: 500;
+            `;
+            const ArticleContents = styled.Text`
+                margin-top: 3px;
+                font-size : 13px;
+            `;
         const ArticleImageBox = styled.View`
-            width: 25%;
+            //border : 1px;
+            width : 65px;
             align-items: center;
+            justify-content: space-between;
+            padding-bottom: 15px;
         `;
             const HotImage = styled.Image`
                 border-radius: 10px;
-                margin-top: 15px;
                 background-color: grey;
                 width : 60px;
                 height : 60px;
+                margin-bottom: 3px;
             `;
-            const HotImageText = styled.Text`
-                margin-top: 5px;
-                color: black;
-                font-size: 10px;
+            const ReactionBox = styled.View`
+                //border : 1px;
+                width: 60px;
+                height: 15px;
+                flex-direction: row;
             `;
+                const CommentIcon = styled.View`
+                    width: 25%;
+                    height: 100%;
+                    //border: 1px;
+                `;
+                const CommentText = styled.Text`
+                    font-size: 11px;
+                `;
+                const GoodIcon = styled.View`
+                    margin-left: 5px;
+                    width: 25%;
+                    height: 100%;
+                    //border: 1px;
+                    justify-content: center;
+                `;
+                const GoodText = styled.Text`
+                    font-size: 11px;
+                `;
+
 const HotPlusBar = styled.View`
-     border:1px;
-     margin-top: 3px;
+     //border:1px;
+     margin-top: 10px;
      margin-left: 10px;
      margin-right: 10px;
-     margin-bottom : 20px;
-     height: 10px;    
+     margin-bottom : 30px; 
+     align-content: center;
+     justify-content: center;
+     flex-direction : row;
 `;  
+    const PlusBarCircle = styled.View`
+        background-color: #C4BFBF;
+        width: 5px;
+        height: 5px;
+        border-radius: 5px;
+        margin-right: 5px;
+    `;
+    const PlusBarBar = styled.View`
+        background-color: #C4BFBF;
+        border-radius: 5px;
+        height: 5px;
+        width: 60px;
+        margin-right: 5px;
+    `;
 
 //----------------------------------------------------------------------------------------------
 //------------------------------전공 통합 게시판-------------------------------------------------
 //----------------------------------------------------------------------------------------------
- const AllBoardBox = styled.View`
+ const AllBoardBox = styled.TouchableOpacity`
     border-radius:10px;
     background-color: #1655E9;
-    margin: 10px;
+    width: 86%;;
     height: 40px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
+    align-self: center;
+    justify-content: center;
 `; 
     const AllBoardText = styled.Text`
         color : white;
-        margin-top: 11px;
-        font-size: 13px;
+        font-size: 16px;
         align-self: center;
+        font-weight: 600;
     `;
 
 const AllMajorBox = styled.View`
+    height: auto;
+    //border: 1px;
     align-self: center;
-    margin:10px;
-    margin-top: 5px;
-    height: 500px;
-    width: 80%;
+    margin-left: 11%;
+    margin-right: 11%;
 `; 
     const Major1 = styled.View`
-        height: 20%;
+        height: auto;
         width : 100%;
         flex-direction: row;
         align-items: center;
     `;
         const Major11 = styled.TouchableOpacity`
-            border: 1px;
+            //border: 1px;
             width : 30%;
             height : 100%;
-            margin: 4px;
             align-items: center;
         `;
             const Image11 = styled.View`
-                border: 1px;
-                border-color: black;
-                border-radius: 30px;
-                width: 60px;
-                height: 60px;
+                //border: 1px;
+                border-radius: 40px;
+                background-color: lightgray;
+                width: 80px;
+                height: 80px;
                 margin-top: 5px;
                 margin-bottom: 10px;
             `;
             const TextBox11 = styled.View`
-                background-color: lightgray;
                 width : 60px;
                 height: 13px;
                 align-items: center;
             `;
                 const Image11Text = styled.Text`
                     font-size : 10px;
-                    color: black;
+                    font-weight: 300;
             `;
         const Major12 = styled.TouchableOpacity`
-            border: 1px;
+            //border: 1px;
             width : 30%;
             height : 100%;
             margin: 4px;
             align-items: center;
         `;
             const Image12 = styled.View`
-                border: 1px;
-                border-color: black;
-                border-radius: 30px;
-                width: 60px;
-                height: 60px;
+                //border: 1px;
+                border-radius: 40px;
+                background-color: lightgray;
+                width: 80px;
+                height: 80px;
                 margin-top: 5px;
                 margin-bottom: 10px;
             `;
             const TextBox12 = styled.View`
-                background-color: lightgray;
                 width : 60px;
                 height: 13px;
                 align-items: center;
             `;
                 const Image12Text = styled.Text`
                     font-size : 10px;
-                    color: black;
+                    font-weight: 300;
             `;
         const Major13 = styled.TouchableOpacity`
-            border: 1px;
+            //border: 1px;
             width : 30%;
             height : 100%;
             margin: 4px; 
             align-items: center;
         `;
             const Image13 = styled.View`
-                border: 1px;
-                border-color: black;
-                border-radius: 30px;
-                width: 60px;
-                height: 60px;
+                //border: 1px;
+                background-color: lightgray;
+                border-radius: 40px;
+                width: 80px;
+                height: 80px;
                 margin-top: 5px;
                 margin-bottom: 10px;
             `;
             const TextBox13 = styled.View`
-                background-color: lightgray;
                 width : 60px;
                 height: 13px;
                 align-items: center;
             `;
                 const Image13Text = styled.Text`
                     font-size : 10px;
-                    color: black;
+                    font-weight: 300;
             `;
 
-const Board = ({navigation:{navigate}})=>(
+const Board_min = ({navigation:{navigate}})=>(
     <Container>
         <HeaderBox>
             <BackView>
-                <BackBtn>
-                    <BackText>{' <'}</BackText>
+                <BackBtn 
+                    onPress={()=>navigate("Tabs",{screen:"Home"})}>
+                    <Icon name="chevron-back-outline" size = {30} />
                 </BackBtn>
             </BackView>
             <BoardTextBox>
                 <BoardText>게시판</BoardText>   
-                <SearchBtn>
-                    <SearchText>검색</SearchText>
+                <SearchBtn
+                    onPress={()=>navigate("Stack",{screen:"Board_research_min"})}>
+                    <Icon name="search-outline" size = {25}/>
                 </SearchBtn>
             </BoardTextBox>
-            <PlusView>
-                <PlusBtn> 
-                    <PlusText>{' :'}</PlusText>
-                </PlusBtn>
-            </PlusView>
+            <PlusBtn> 
+                <Icon name="ellipsis-vertical-outline" size = {25}/>
+            </PlusBtn>
         </HeaderBox>
         <HotBoardBox>
             <HotTextBox>
-                <HotIconBox></HotIconBox>
+                <HotIconBox>
+                    <Icon name="flame" size = {30} color = "#FF0000"/>
+                    </HotIconBox>
                 <HotText>HOT</HotText>
             </HotTextBox>
-            <HotArticle>
-                <AricleText></AricleText>
+            <HotArticle
+                onPress={()=>navigate("Stack",{screen:"HotBoard_min"})}>
+                <AricleText>
+                    <ArticleTitle>제목을 입력하세요</ArticleTitle>
+                    <ArticleContents>내용을 입력하세요</ArticleContents>
+                </AricleText>
                 <ArticleImageBox>
                     <HotImage></HotImage>
-                    <HotImageText>좋아요 수</HotImageText>
+                    <ReactionBox>
+                        <CommentIcon>
+                            <Icon name="chatbox-ellipses" size = {12} color = "#1655E9"/>
+                        </CommentIcon>
+                        <CommentText>18</CommentText>
+                        <GoodIcon>
+                            <Icon name="thumbs-up" size = {12} color = "#FF0000"/>
+                        </GoodIcon>
+                        <GoodText>18</GoodText>
+                    </ReactionBox>
                 </ArticleImageBox>
             </HotArticle>
         </HotBoardBox>
-        <HotPlusBar></HotPlusBar>
-        <AllBoardBox>
+        <HotPlusBar>
+            <PlusBarCircle></PlusBarCircle>
+            <PlusBarCircle></PlusBarCircle>
+            <PlusBarBar></PlusBarBar>
+            <PlusBarCircle></PlusBarCircle>
+            <PlusBarCircle></PlusBarCircle>
+        </HotPlusBar>
+        <AllBoardBox
+            onPress={()=>navigate("Stack",{screen:"Integrated_Board_min"})}>
             <AllBoardText>통합 게시판</AllBoardText>
         </AllBoardBox>
         <AllMajorBox>
             <Major1>
                <Major11
-                onPress={()=>navigate("Stack",{screen:"Designboard"})}
+                onPress={()=>navigate("Stack",{screen:"Designboard_min"})}
                >
                     <Image11></Image11>
                     <TextBox11>
@@ -394,4 +450,4 @@ const Board = ({navigation:{navigate}})=>(
     </Container>
     
 )
-export default Board;
+export default Board_min;
